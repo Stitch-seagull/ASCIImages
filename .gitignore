@@ -1,0 +1,10 @@
+# CLion files
+/cmake-build-*/
+/.idea/
+
+# Compilation
+*.o
+ASCIImages
+
+# Doxygen
+/docs/
