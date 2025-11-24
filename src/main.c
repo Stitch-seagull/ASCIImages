@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <ncurses.h>
 #define STB_IMAGE_IMPLEMENTATION
-#include "./libraries/stb_image.h"
+#include "../libraries/stb_image.h"
 
 int main(int argc, char *argv[]){
     if(argc != 2){

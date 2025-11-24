@@ -3,13 +3,20 @@ LLIB = -lncurses -lm
 FLAGS = -Wall
 TARGET = ASCIImages
 
-.PHONY: build main clean exe
+SRC = src
+BUILD = build
 
-build: main.o
-	$(CC) main.o -o $(TARGET) $(LLIB)
+.PHONY: all clean
 
-main.o: main.c
-	$(CC) -c main.c $(FLAGS)
+all: $(BUILD)/main.o
+	$(CC) $(BUILD)/main.o -o $(TARGET) $(LLIB)
+
+$(BUILD)/main.o: $(SRC)/main.c | $(BUILD)
+	$(CC) -c $(SRC)/main.c $(FLAGS) -o $(BUILD)/main.o
+
+$(BUILD): 
+	mkdir -p $(BUILD)
 
 clean:
-	rm -rf *.o
+	rm -rf $(BUILD)/*.o
+	rm -f $(TARGET)

@@ -3,8 +3,11 @@
 /.vscode/
 
 # Compilation
-*.o
-ASCIImages
+/build/*
+/ASCIImages
 
 # Doxygen
 /docs/
+
+# Gitkeep
+!/build/.gitkeep
