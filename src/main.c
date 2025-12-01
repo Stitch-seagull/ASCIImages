@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <ncurses.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include "../libraries/stb_image.h"
+#include "../include/pixel.h"
 
 int main(int argc, char *argv[]){
     if(argc != 2){
