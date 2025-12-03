@@ -1,10 +1,27 @@
 #include "../include/pixel.h"
 
-ImageBuffer pxl_initBuffer(unsigned char *data, int height, int width){
+ImageBuffer pxl_initEmptyBuffer(int height, int width){
+
+    if(height <=0 || width <= 0){
+        return NULL;
+    }
+
     ImageBuffer buffer = malloc(sizeof(struct sImageBuffer));
     buffer->height = height;
     buffer->width = width;
     buffer->data = malloc(sizeof(struct sPixel) * height * width);
+    return buffer;
+}
+
+ImageBuffer pxl_initBuffer(unsigned char *data, int height, int width){
+
+    ImageBuffer buffer = pxl_initEmptyBuffer(height, width);
+    
+    if(buffer == NULL){
+        return NULL;
+    } else if(data == NULL){
+        return NULL;
+    }
 
     for(int y = 0; y < height; y++){
         for(int x = 0; x < width; x++){
