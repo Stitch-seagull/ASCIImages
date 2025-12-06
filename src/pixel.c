@@ -36,6 +36,15 @@ ImageBuffer pxl_initBuffer(unsigned char *data, int height, int width){
     return buffer;
 }
 
+void pxl_freeBuffer(ImageBuffer buffer){
+    if(buffer == NULL){
+        return;
+    } else {
+        free(buffer->data);
+        free(buffer);
+    }
+};
+
 struct sPixel pxl_getPixel(ImageBuffer buffer, int x, int y)
 {
     struct sPixel error;
@@ -51,3 +60,4 @@ struct sPixel pxl_getPixel(ImageBuffer buffer, int x, int y)
 
     return buffer->data[y * buffer->width + x];
 };
+

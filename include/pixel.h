@@ -41,6 +41,13 @@ ImageBuffer pxl_initEmptyBuffer(int height, int width);
 ImageBuffer pxl_initBuffer(unsigned char *data, int height, int width);
 
 /*
+    @brief Free a buffer
+    @param buffer Buffer to free
+*/
+
+void pxl_freeBuffer(ImageBuffer buffer);
+
+/*
     @brief Return the pixel at the coordinates (x, y)
     @param buffer Pointer to the buffer you want the pixel from
     @param x Coordinate x
