@@ -42,17 +42,17 @@ void pxl_freeBuffer(ImageBuffer buffer){
     } else {
         free(buffer->data);
         free(buffer);
+        return;
     }
 };
 
 struct sPixel pxl_getPixel(ImageBuffer buffer, int x, int y)
 {
-    struct sPixel error;
-        error.r = -1;
-        error.g = -1;
-        error.b = -1;
+    struct sPixel error = {-1, -1, -1};
 
-    if(buffer == NULL || buffer->data == NULL){
+    if(buffer == NULL){
+        return error;
+    } else if (buffer->data == NULL){
         return error;
     } else if ( x < 0 || y < 0 || x >= buffer->width || y >= buffer->height){
         return error;
@@ -61,3 +61,10 @@ struct sPixel pxl_getPixel(ImageBuffer buffer, int x, int y)
     return buffer->data[y * buffer->width + x];
 };
 
+bool pxl_cmpPixel(struct sPixel p1, struct sPixel p2){
+    if(p1.r == p2.r && p1.g == p2.g && p1.b == p2.b){
+        return true;
+    } else {
+        return false;
+    }
+};

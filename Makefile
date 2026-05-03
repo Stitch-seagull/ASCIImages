@@ -1,16 +1,21 @@
 CC = gcc
-LLIB = -lncurses -lm
-FLAGS = -Wall
+LLIB = -lm
+FLAGS = -g -Wall
 TARGET = ASCIImages
 
-SRC = src
-INCLUDE = include
-BUILD = build
+ROOT_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
+SRC := $(ROOT_DIR)/src
+INCLUDE := $(ROOT_DIR)/include
+LIBS := $(ROOT_DIR)/libraries
+TESTS := $(ROOT_DIR)/tests
+BUILD := $(ROOT_DIR)/build
+BUILD_TESTS := $(BUILD)/tests/
 
-.PHONY: all clean
+.PHONY: build/app clean
+.DEFAULT_GOAL := build/app
 
-all: $(BUILD)/main.o $(BUILD)/pixel.o
-	$(CC) $^ -o $(TARGET) $(LLIB)
+build/app: $(BUILD)/main.o $(BUILD)/pixel.o
+	$(CC) $^ -o $(ROOT_DIR)$(TARGET) $(LLIB)
 
 $(BUILD)/main.o: $(SRC)/main.c | $(BUILD)
 	$(CC) -c $(SRC)/main.c $(FLAGS) -o $(BUILD)/main.o
@@ -23,4 +28,8 @@ $(BUILD):
 
 clean:
 	rm -rf $(BUILD)/*.o
-	rm -f $(TARGET)
+	rm -rf $(BUILD)/*.gcno
+	rm -rf $(BUILD)/*.gcda
+	rm -rf $(BUILD_TESTS)
+	rm -f $(ROOT_DIR)/$(TARGET)
+	rm -f $(TESTS)/test_pixel
