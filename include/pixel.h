@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct sPixel
 {
@@ -11,6 +12,27 @@ typedef struct sPixel
     int g;
     int b;
 } *Pixel;
+
+
+/*
+    Coordinates : (X, Y)
+
+    Width = max(X) + 1
+    Height = max(Y) + 1
+
+    0 ------+-------+-------+-> X
+    | (0,0) | (1,0) | (2,0) |
+    |-------+-------+-------|
+    | (0,1) | (1,1) | (2,1) |
+    |-------+-------+-------|
+    | (0,2) | (1,2) | (2,2) |
+    |-------+-------+-------|
+    v 
+   
+    Y
+
+*/
+
 
 typedef struct sImageBuffer
 {
@@ -35,7 +57,7 @@ ImageBuffer pxl_initEmptyBuffer(int height, int width);
     @param width Width of the image in pixels
     @return Return a pointer to the buffer
 
-    @note Height and width must be correctly match the actual size of data. Passing incorrect values may lead to out-of-bounds access and segmentation faults.
+    @note Height and width must correctly match the actual size of data. Passing incorrect values may lead to out-of-bounds access and segmentation faults.
 */
 
 ImageBuffer pxl_initBuffer(unsigned char *data, int height, int width);
@@ -57,3 +79,8 @@ void pxl_freeBuffer(ImageBuffer buffer);
     @see pxl_initBuffer
 */
 struct sPixel pxl_getPixel(ImageBuffer buffer, int x, int y);
+
+/*
+    @brief Return true if p1 and p2 are the same color.
+*/
+bool pxl_cmpPixel(struct sPixel p1, struct sPixel p2);
