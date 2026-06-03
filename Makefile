@@ -14,13 +14,8 @@ BUILD_TESTS := $(BUILD)/tests/
 .PHONY: build/app clean
 .DEFAULT_GOAL := build/app
 
-<<<<<<< HEAD
-all: $(BUILD)/main.o $(BUILD)/pixel.o $(BUILD)/resize.o
-	$(CC) $^ -o $(TARGET) $(LLIB)
-=======
 build/app: $(BUILD)/main.o $(BUILD)/pixel.o
 	$(CC) $^ -o $(ROOT_DIR)$(TARGET) $(LLIB)
->>>>>>> imageReading
 
 $(BUILD)/main.o: $(SRC)/main.c | $(BUILD)
 	$(CC) -c $(SRC)/main.c $(FLAGS) -o $(BUILD)/main.o
