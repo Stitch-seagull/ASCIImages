@@ -7,10 +7,10 @@
 
 /*
     @brief Downscale an Image using area averaging algorithm
-    @param data ImageBuffer on the image to downscale
+    @param source ImageBuffer of the source image
     @param height Target height
     @param width Target width
 */
 
-ImageBuffer rsz_areaAveragingDownscale(ImageBuffer data, int height, int width);
+ImageBuffer rsz_areaAveragingDownscale(ImageBuffer source, int height, int width);
 
