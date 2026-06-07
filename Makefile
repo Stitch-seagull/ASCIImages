@@ -36,3 +36,4 @@ clean:
 	rm -rf $(BUILD_TESTS)
 	rm -f $(ROOT_DIR)/$(TARGET)
 	rm -f $(TESTS)/test_pixel
+	rm -f $(TESTS)/test_resize
